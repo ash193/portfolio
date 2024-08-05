@@ -1,13 +1,16 @@
-import React from "react";
-import ProjectsCard from "./ProjectsCard";
+"use client";
+import React, { useState, useRef } from "react";
+import ProjectCard from "./ProjectsCard";
 import ProjectTag from "./ProjectTag";
+import { motion, useInView } from "framer-motion";
+import AboutImage from "../components/images/about-image.png";
 
 const projectsData = [
   {
     id: 1,
     title: "React Portfolio Website",
     description: "Project 1 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -16,7 +19,7 @@ const projectsData = [
     id: 2,
     title: "Full Stack Store App",
     description: "Project 2 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -25,7 +28,7 @@ const projectsData = [
     id: 3,
     title: "Gym App",
     description: "Project 3 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -34,7 +37,7 @@ const projectsData = [
     id: 4,
     title: "Finance Tracker",
     description: "Project 4 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -43,7 +46,7 @@ const projectsData = [
     id: 5,
     title: "React Todo",
     description: "Project 5 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -52,7 +55,7 @@ const projectsData = [
     id: 6,
     title: "Twitter Clone",
     description: "Project 6 description",
-    image: "../images/about-image.png",
+    image: AboutImage,
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -60,30 +63,66 @@ const projectsData = [
 ];
 
 const ProjectsSection = () => {
+  const [tag, setTag] = useState("All");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const handleTagChange = (newTag) => {
+    setTag(newTag);
+  };
+
+  const filteredProjects = projectsData.filter((project) =>
+    project.tag.includes(tag)
+  );
+
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
   return (
-    <>
-      <h2>My Projects</h2>
+    <section id="projects">
+      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+        My Projects
+      </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <button className="rounded-full border-2 border-purple-500 px-6 py-3 text-xl cursor-pointer">
-          All
-        </button>
-        <button className="rounded-full border-2 border-slate-600 hover:border-white px-6 py-3 text-xl cursor-pointer">
-          Web
-        </button>
+        <ProjectTag
+          onClick={handleTagChange}
+          name="All"
+          isSelected={tag === "All"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Web"
+          isSelected={tag === "Web"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Mobile"
+          isSelected={tag === "Mobile"}
+        />
       </div>
-      <div>
-        {projectsData.map((project) => (
-          <ProjectsCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            imgUrl={project.image}
-            gitUrl={project.gitUrl}
-            previewUrl={project.previewUrl}
-          />
-        ))}{" "}
-      </div>
-    </>
+      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+        {filteredProjects.map((project, index) => (
+          <motion.li
+            key={index}
+            variants={cardVariants}
+            initial="initial"
+            animate={isInView ? "animate" : "initial"}
+            transition={{ duration: 0.3, delay: index * 0.4 }}
+          >
+            <ProjectCard
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              imgUrl={project.image}
+              gitUrl={project.gitUrl}
+              previewUrl={project.previewUrl}
+            />
+          </motion.li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

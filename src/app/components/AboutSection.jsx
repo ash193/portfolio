@@ -1,8 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useTransition, useState } from "react";
 import Image from "next/image";
-import AboutImage from "../images/about-image.png";
+import AboutImage from "./images/about-image.png";
 import TabButton from "./TabButton";
 
 const tab_data = [
@@ -20,6 +19,7 @@ const tab_data = [
         <li>Express.js</li>
         <li>Next.js</li>
         <li>Tailwind CSS</li>
+        <li>Swift</li>
       </ul>
     ),
   },
@@ -28,7 +28,7 @@ const tab_data = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Bachelor's of Science in Computer Science</li>
+        <li>Bachelor&apos;s of Science in Computer Science</li>
         <li>John Jay College of Criminal Justice</li>
         <li>New York, NY</li>
       </ul>
@@ -46,9 +46,10 @@ const tab_data = [
     ),
   },
 ];
+
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
-  const [startTransition, isPending] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const handleTabChange = (id) => {
     startTransition(() => {
@@ -57,16 +58,16 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white">
-      <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:py-16 ">
-        <Image src={AboutImage} width={500} height={500} alt="About-image" />
-        <div className="mt-4 md:mt-0 text-left flex flex-col min-h-full">
-          <h2 className="text-4xl font-bold text-white mb-4 ">About Me</h2>
-          <p className="text-base lg:text-lg ">
-            I am full stack web developer with a passion for creating
+    <section className="text-white" id="about">
+      <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
+        <Image src={AboutImage} width={500} height={500} alt="About Image" />
+        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
+          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
+          <p className="text-base lg:text-lg">
+            I am a full stack web developer with a passion for creating
             interactive and responsive web applications. I have experience
-            working with JavaScript, React, Redux, Node.js, Next.js, Express,
-            PostgreSQL, HTML, CSS, and Git. I am a quick learner and I am always
+            working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
+            Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
             looking to expand my knowledge and skill set. I am a team player and
             I am excited to work with others to create amazing applications.
           </p>
@@ -75,18 +76,21 @@ const AboutSection = () => {
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
             >
+              {" "}
               Skills{" "}
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("education")}
               active={tab === "education"}
             >
+              {" "}
               Education{" "}
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("certifications")}
-              active={tab === "experience"}
+              active={tab === "certifications"}
             >
+              {" "}
               Certifications{" "}
             </TabButton>
           </div>
