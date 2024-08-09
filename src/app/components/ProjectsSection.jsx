@@ -3,61 +3,66 @@ import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectsCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
-import AboutImage from "../components/images/about-image.png";
+import TwitterImage from "../components/images/TwitterImage.png";
+import TodoImage from "../components/images/TodoImage.jpg";
+import FinanceImage from "../components/images/FinanceTrackerImage.png";
+import GymAppImage from "../components/images/GymAppImage.png";
+import StoreImage from "../components/images/StoreImage.png";
+import LisbonImage from "../components/images/LisbonImage.png";
 
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
-    description: "Project 1 description",
-    image: AboutImage,
+    title: "Travel Website",
+    description: "",
+    image: LisbonImage,
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/ash193/LisbonTravelPage",
+    previewUrl: "https://lisbontravelpage.netlify.app/",
   },
   {
     id: 2,
     title: "Full Stack Store App",
-    description: "Project 2 description",
-    image: AboutImage,
+    description: "",
+    image: StoreImage,
     tag: ["All", "Web"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/vijhan/FullStackGirlies",
     previewUrl: "/",
   },
   {
     id: 3,
     title: "Gym App",
-    description: "Project 3 description",
-    image: AboutImage,
+    description: "",
+    image: GymAppImage,
     tag: ["All", "Web"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/ash193/GymApp",
     previewUrl: "/",
   },
   {
     id: 4,
     title: "Finance Tracker",
-    description: "Project 4 description",
-    image: AboutImage,
+    description: "",
+    image: FinanceImage,
     tag: ["All", "Web"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/ash193/PythonFinanceTracker",
     previewUrl: "/",
   },
   {
     id: 5,
     title: "React Todo",
-    description: "Project 5 description",
-    image: AboutImage,
+    description: "",
+    image: TodoImage,
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/ash193/todolist",
+    previewUrl: "https://my-newtodolist.netlify.app/",
   },
   {
     id: 6,
     title: "Twitter Clone",
-    description: "Project 6 description",
-    image: AboutImage,
-    tag: ["All", "Web"],
-    gitUrl: "/",
+    description: "",
+    image: TwitterImage,
+    tag: ["All", "Mobile"],
+    gitUrl: "https://github.com/ash193/TwitterClone",
     previewUrl: "/",
   },
 ];
