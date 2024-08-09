@@ -6,7 +6,7 @@ const fromEmail = process.env.FROM_EMAIL;
 
 export async function POST(req, res) {
   const { email, subject, message } = await req.json();
-  console.log(email, subject, message);
+
   try {
     const data = await resend.emails.send({
       from: fromEmail,
@@ -21,8 +21,15 @@ export async function POST(req, res) {
         </>
       ),
     });
-    return NextResponse.json(data);
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error });
+    console.error("Error sending email:", error);
+    return NextResponse.json(
+      {
+        error: "There was an error sending your email. Please try again later.",
+      },
+      { status: 500 }
+    );
   }
 }
