@@ -16,11 +16,10 @@ export async function POST(req) {
 
   try {
     await transporter.sendMail({
-      from: process.env.FROM_EMAIL,
-      to: email,
+      from: `"Ashley Rajpaul" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: subject,
       html: `
-        <strong>${subject}</strong>
         <p>Thank you for contacting me! I will reach out soon</p>
         <br>
         <p>Your message that was submitted:</p>
