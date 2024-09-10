@@ -21,8 +21,9 @@ export async function POST(req) {
       subject: subject,
       html: `
         <strong>${subject}</strong>
-        <p>Thank you for contacting me!</p>
-        <p>New message submitted:</p>
+        <p>Thank you for contacting me! I will reach out soon</p>
+        <br>
+        <p>Your message that was submitted:</p>
         <p>${message}</p>
       `,
     });
